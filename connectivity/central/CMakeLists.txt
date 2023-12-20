@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 3.16)
 
+set(DEVICE_NAME "DA14531")
+set(DIALOG_SDK_PATH "$ENV{HOME}/Projects/sdk/DA145xx_SDK/6.0.18.1182.1")
+set(DIALOG_EXAMPLE_PATH "${DIALOG_SDK_PATH}/projects")
+set(GCC_TOOLCHAIN_PATH "/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi")
+set(CMAKE_TOOLCHAIN_FILE ${DIALOG_EXAMPLE_PATH}/build_utils/gcc/arm-none-eabi.cmake)
+
+
 project(${DEVICE_NAME} LANGUAGES C CXX ASM)
 #Full SDK builds
 set(BUILD_FOR_531 TRUE)
-set(BUILD_FOR_585 TRUE)
-set(BUILD_FOR_586 TRUE)
+set(BUILD_FOR_585 FALSE)
+set(BUILD_FOR_586 FALSE)
 
 #Peripheral example builds
 set(BUILD_FOR_531_PERIPHERAL_EXAMPLE FALSE)

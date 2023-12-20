@@ -1,0 +1,54 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "Debug-jlink",
+            "type": "cppdbg",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/build/DA14531_531.elf",
+            "MIMode": "gdb",
+            "targetArchitecture": "arm",
+            "osx": {
+                "miDebuggerPath": "/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/arm-none-eabi-gdb",
+                "debugServerPath": "/Applications/SEGGER/JLink_V794b/JLinkGDBServerCLExe",
+                "setupCommands": [
+                    {
+                        "description": "Enable pretty-printing for gdb",
+                        "text": "-enable-pretty-printing",
+                        "ignoreFailures": true
+                    }
+                ],
+            },  
+            "debugServerArgs": "-select USB -device DA14531 -endian little -if SWD -speed 4000 -port 2331 -swoport 2332 -telnetport 2333 -singlerun",
+            "miDebuggerServerAddress": "localhost:2331",
+            "stopAtEntry": true,
+            "serverStarted": "Connected to target",
+            "serverLaunchTimeout": 5000,
+            "filterStdout": true,
+            "stopAtConnect": true,
+            "postRemoteConnectCommands": [
+                {
+                    "text": "monitor reset",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "load",
+                    "ignoreFailures": false
+                },
+                {
+                    "text": "monitor halt",
+                    "ignoreFailures": false
+                }
+            ],
+            "logging": {
+              "exceptions": true,
+              "moduleLoad": true,
+              "programOutput": true,
+              "engineLogging": false,
+              "trace": false,
+              "traceResponse": false
+            }
+        }
+    ]
+}

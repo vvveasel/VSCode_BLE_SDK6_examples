@@ -53,7 +53,7 @@
 // Define UART2 Tx Pad
 #if defined (__DA14531__)
     #define UART2_TX_PORT           GPIO_PORT_0
-    #define UART2_TX_PIN            GPIO_PIN_6
+    #define UART2_TX_PIN            GPIO_PIN_5
 		
     #define GPIO_BUTTON_PORT	    GPIO_PORT_0
     #define GPIO_BUTTON_PIN	    GPIO_PIN_11
@@ -67,7 +67,7 @@
 #endif
 
 // Define UART2 Settings
-#define UART2_BAUDRATE              UART_BAUDRATE_921600
+#define UART2_BAUDRATE              UART_BAUDRATE_230400
 #define UART2_DATABITS              UART_DATABITS_8
 #define UART2_PARITY                UART_PARITY_NONE
 #define UART2_STOPBITS              UART_STOPBITS_1
