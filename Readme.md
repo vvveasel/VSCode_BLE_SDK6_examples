@@ -1,4 +1,5 @@
-﻿## *Modified repo of the [Smartbond SDK6 examples](https://github.com/dialog-semiconductor/BLE_SDK6_examples) for Visual Studio Code*
+﻿![vscode](../VSCode_BLE_SDK6_examples/img/vscode1.png)
+## *Modified repo of the [Smartbond SDK6 examples](https://github.com/dialog-semiconductor/BLE_SDK6_examples) for Visual Studio Code*
 ---
 
 This is the repository storing examples for the [DA145xx family](https://www.renesas.com/eu/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-smartbond-ultra-low-power-bluetooth-51-system-chip).
