@@ -1,4 +1,4 @@
-﻿![vscode](../VSCode_BLE_SDK6_examples/img/vscode1.png)
+﻿![vscode](./img/vscode1.png)
 ## *Modified repo of the [Smartbond SDK6 examples](https://github.com/dialog-semiconductor/BLE_SDK6_examples) for Visual Studio Code*
 ---
 
