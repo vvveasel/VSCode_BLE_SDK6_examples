@@ -1,181 +1,67 @@
-﻿# Smartbond SDK6 Application Examples
+﻿## *Modified repo of the [Smartbond SDK6 examples](https://github.com/dialog-semiconductor/BLE_SDK6_examples) for Visual Studio Code*
+---
 
-This is the repository storing example for the [DA145xx family](https://www.renesas.com/eu/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-smartbond-ultra-low-power-bluetooth-51-system-chip).
+This is the repository storing examples for the [DA145xx family](https://www.renesas.com/eu/en/products/interface-connectivity/wireless-communications/bluetooth-low-energy/da14531-smartbond-ultra-low-power-bluetooth-51-system-chip).
 
-For information about the DA145xx platform and how to bring up your development kit, please refer to the [Getting started User Manual](http://lpccs-docs.renesas.com/UM-B-117-DA14531-Getting-Started-With-The-Pro-Development-Kit/index.html)
+### Minimum system requirements
+Current configuration has been tested on Intel Mac, but any host with the following should work:
 
-## Examples Overview
+- [VSCode](https://code.visualstudio.com/)
+- [Git](https://git-scm.com/)
+- [CMake](https://cmake.org/)
+- [Segger J-link](https://www.segger.com/downloads/jlink/)
+- [Dialog SDK 6](https://www.renesas.com/us/en/document/swo/sdk601811821-da1453x-da145856?r=1564826)
+- [GCC arm-none-eabi toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
 
-|Module         		|DA14531 Pro Dev Kit	|DA14585 Pro Dev Kit|DA14585 Basic Kit		|                  DA14531 USB Kit                  |                                                                                                Example name                                                                   									|Key Words                                                                                         |         Example Description                                                                                                                                                                                                                                                           														|                                                                                                                                                                                                  
-|-----------------------|-----------------------|-------------------|-----------------------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------									|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------														|
-|			 			|:heavy_check_mark:     |:heavy_check_mark: |                 		|                                                   |[active\_scanner](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/active_scanner)                                               													|scanning mode - advertising data - UART                                                           |This example shows how to setup the DA145xx device in active scanning mode,  On advertising data report, the data is formatted and pushed on the UART                                             																					   														|
-|               		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     | :heavy_check_mark:|                 		|												    |	[advertising](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/advertising_example)                     										|button - advertising - Sleep- Wakeup up                                                           |This example shows how to Use a button to switch between advertising methods, Go for sleep and wakeup , Timer callback is used                                                                                                                                        														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     | :heavy_check_mark:|                 		|												    |	[burst\_adv](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_burst_adv)                                              										|Burst advertising - UART                                                                          |This is a simple example showing how to implement 'burst' advertising on the DA14531 and DA14585/6 devices                                                                                                                                                            														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     | :heavy_check_mark:|                 		|												    |		[button\_Wakeup](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_Notify_button_Wakeup)                   												|           notification - BLE -Button presses                                                    |This example shows how to configure a DA14531 or DA14585/586 device to send notifications to a BLE central by button presses                                                                                                                                          														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     |:heavy_check_mark: |                 		|												    |		[pressure\_sensor](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_pressure_sensor_bmp388)               												|BLE- PRESSURE 5 CLICK Board™                                                                      |This is Simple example showing how to interface the DA14585/586 and DA14531 with the PRESSURE 5 CLICK Board™                                                                                                                                                              														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     |:heavy_check_mark: |                 		|												    |	[ble\_temperature](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_temperature_ntf)                                  										|MCP9808-  Thermo 8 click board -I2C                                                               |This is Simple example showing how to interface the DA14585/586 and DA14531 with the Thermo 8 click board™                                                                                                                                                        														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|           			|                   	|                   |   :heavy_check_mark:  |												    |	[BLE2IR](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/BLE2IR)                                                          									|Remote Control Unit                                                                               |This example provides an implementation of a Simple RCU using a custom BLE profile                                                                                                                                                                                    														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     |:heavy_check_mark: |                 		|												    |	[ble-Midi](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble-Midi)                                                      									| MIDI - BLE                                                                                       |This example shows how to  create MIDI service on DA145xx BLE device                                                                                                                                                                														|                        			
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     |:heavy_check_mark: |						|:heavy_check_mark:						            |	[central](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/central)                                                        									 |BLE-Central                                                                                      |This project is intended to illustrate to the user How to scan for peer devices and how to parse advertisement data during the scan process + BLE connection                                                                                                                   																|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     |                   |:heavy_check_mark:		|										            |	[central\_Security](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/central_Security_Demo)                              										|pairing - encryption -bonding                                                                     |The main example purpose is to demonstrate the basic pairing, encryption and bonding process on central side                                                                                                                                                          														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|
-|            			|:heavy_check_mark:     |                   |                 		|												    | 	[hibernation](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/hibernation_and_stateaware_hibernation)              											|Hibernation- State aware hibernation                                                              |This example demonstrates the  Hibernation and the State aware hibernation features on the DA14531                                                                                                                                                                    														|
-|			    		|	                 	|	                |                 		|													|																																																					|																								   |																																																																																			|              
-|**Connectivity**       |:heavy_check_mark:     |:heavy_check_mark: |                       |:heavy_check_mark:                                 |	[ibeacon](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ibeacon)                                                        									|iBeacon- payload parameters -advertising interval, UUID                                           |This is an  iBeacon implementation for the DA14531, DA14585/DA14586                                                                                                                                                                                                            																|
-|               		|						|					|				  		|													|																																																					|																								   |                                                                                                                                                                                                                                                                                       														|
-|            			|:heavy_check_mark:     |                   |                 		|												    |		[ibeacon\_Optim](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ibeacon_Optim)      		                            									|ibeacon - power optimization                                                                      |The example demonstrates an optimized software implementation for ibeacon on the DA14531                                                                                                                                                                              														|        			
-|               		|						|					|				  		|													|																																																					|																								   |                                                                                                                                                                                                                                                                                       														|
-|            			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |		[multi\_con\_periph](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/multi_con_periph)                                									|Central - peripheral- connection                                                                  |This example demonstrates how a single peripheral can be connected to more than one central.                                                                                                                                                                          														|        			
-|               		|						|					|				  		| 												    |																																																					|																								   |                                                                                                                                                                                                                                                                                       														|
-|            			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |		[multirole](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/multirole)                                                									|Central- peripheral - scan-advertise roles                                                        |The example demonstrates the capabilities of the DA14531/585/586 as a Central and a peripheral i.e. scan and advertise role                                                                                                                                           														|        			
-|     					|						|					|				  		|	    											|      																																																				|																								   |                                                                                                                                                                                                                                                                                       														|
-|           			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |		[scan\_request\_track](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/scan_request_track)                            									|scan- central -track                                                                              |This example demonstrates how a peripheral device can track if it is scanned and which central device performs the scanning procedure                                                                                                                                 														|        			
-|						|						|					|				  		|	               									|																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                       														|
-|           			|:heavy_check_mark:     |:heavy_check_mark: |                       |												    |		[simple\_beacon](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/simple_beacon)                                       									|Beacon- Non-Connectable Advertising                                                               |The main purpose of this Software Εxample is to demonstrate creating a Non-Connectable Advertising application example                                                                                                                               														|                         			
-| 						| 						|					|				  		|	 												|             																																																		|                                                                                                  |                                                                                                                                                                                                                                                                                       														|
-|               		|:heavy_check_mark:     |:heavy_check_mark: |				  		|		                                            |[svc\_data\_beacon](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/svc_data_beacon)                                      										|Beacon- Non-Connectable Advertising - UUID                                                        |The main purpose of this software example is to demonstrate creating a Non-Connectable Advertising application example that includes service data. Specifically, this example illustrates the idea of including Service Data from a 16-bit UUID as defined by the Bluetooth SIG			|
-|  						|             			|					|				  		|													|																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                        													|
-|            			| :heavy_check_mark:    |                   |                 		| 											   	    |[Quuppa Tag Emu ](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/Quuppa_DialogTag)                                         										|Quuppa Intelligent Locating System™- real-time location-BLE-Tag                                   |this is the  QUUPPA Tag Emu Demo on the DA14531                                                                                                                                                                                                                                																|
-|						|						|					|				  		|													|																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                        													|
-|            			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |	[Coexistence](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/Coexistence-example)     					|WiFi coexistence -BLE                                                            |The example provides guidelines on how the WiFi coexistence feature can be enabled on the SDK                                                                                                                                                         													|
-|**Features**   		|:heavy_check_mark:     |:heavy_check_mark: | 		                |                                                   |  [L2CAP](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/dynamic_L2CAP_Packet_size_Optimization)																	|L2CAP- DLE-throughput                                                                             |This project is intended to illustrate to the user how to do a peer feature request for determining peer DLE capability<br>and how to request DLE and utilize larger packets to enhance throughput                                                                             																                |
-|	            		|                       |                   |                 		|                                                   |																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                        													|
-|            			|:heavy_check_mark:     |:heavy_check_mark: |                       |:heavy_check_mark:									|		[reset_Indication](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/reset_Indication_update)               						        					|Reset - source                                                                                    |The current SW example demonstrates how to issue and identify the different kinds of reset on the DA14531 and DA14585/586 devices as well as identifying if the device run into a Hardfault or an NMI interrupt.                                                       													|
-|			    		|                       |                   |                 		|                                                   |																																																					|																								   |                                                                                                                                                                                                                                                                                        													|
-|            			|:heavy_check_mark:     |:heavy_check_mark: |                       |:heavy_check_mark: 								|	[social-distancing](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/social-distancing-application)      							            					|DA14531 - social distancing (SDT)                                                                 |This example configures a DA14531 device to be used for social distancing purposes                                                                                                                                                                                     													|
-|						|                       |                   |                       |		                                            |																																																			|																								   |                                                                                                                                                                                                                                                                                        													|
-|            			| :heavy_check_mark:    |                   |                 		|												    |	[Timer1](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/features/DA14531_Timer1_SW_Example)           							    					|Timer 1 -DA14531                                                                                  |This software example demonstrates the usage of the TIMER1 hardware block. The SW example exposes the basic functions that TIMER1 offers                                                                                                                                       			|
-|**Helpers**    		|                       |                   | 		                				|:heavy_check_mark:                 |[usb\_preloaded](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/helpers/usb_preloaded%20_firmware)                               				        					|USB- DA14531-  OTP unique random address - BD address - UART print                                |The main purpose of this software example is to provide the source files containing the firmware for the preloaded binary in the DA14531 USB kit.                                                                                                                              		                                    |
-|**Interfaces** 		|:heavy_check_mark:     |:heavy_check_mark: |                       |                                                   |[accel-Sensor](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/accel-Sensor)                                                      									| I2C accelerometer -BLE notifications                                                             |This example shows how to acquire data from an I2C accelerometer and send the measurements with BLE notifications using a DA14531 or DA14585/586 device                                                                                                                        			                                |
-|               		|                       |                   |                 		|                                                   | 																																												                                    |                                                                                                  |                                                                                                                                                                                    																																						|
-|            			|:heavy_check_mark:     |                   |                 		|												    |[STM32-external-processor](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/external-processor-stm32)        |STM32- DA14531 RAM - External MCU                                                |The goal of this example is to show how to load a program into the RAM of the DA14531 via a STM32 microcontroller                                                                                                                                                              			                                |
-|						|                       |                   |                 		|                                                   |																																												                                    |                                                                                                  |                                                                                                                                                                                    																			   																	     	|
-|            			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |	[HID-Gamepad](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/HID-Gamepad-Digitizer)                    							            				| HID gamepad - BLE HOGPD profile.                                                                 |A DA14585/6 HID gamepad demo project. Used to demonstrate the usage of HID features over BLE with HOGPD profile.                                                                                                                                                               															    |
-|						|                       |                   |                 		|                                                   |																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
-|						|                       |                   |:heavy_check_mark:     |												    |	[MCube-Accel](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/MCube-Accel-MC36xx)                          					|I2C- MC36xx (MC3672/35) accelerometers.                         |Sample software application to interface Dialog DA14585/586 BLE SoC's with mCube MC36xx (MC3672/35) accelerometers.                                                                                                                                                            			                |
-|						|						|					|				  		|												    |																																																					|																								   |																																																																						                                                    |
-|			    		| :heavy_check_mark:    |:heavy_check_mark: |                       |	:heavy_check_mark:					            |	[segger\_rtt](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/segger_rtt)                                         												|Segger RTT                                                                                        |This example illustrates to the user, how to use SEGGER RTT in conjunction with the DA145xx family.                                                                                                                                                                            			|
-|	            		|                       |                   |                 		|                                                   |																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
-|            			|:heavy_check_mark:     |:heavy_check_mark: | :heavy_check_mark:    |												    |	[simple\_button](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/simple_button)                                   												|  Button - Press - UART                                                                                                |This example shows How to configure a button for short press and long press                                                                                                                                                                                                    			                                |
-|               		|                       |                   |                 		|                                                   |																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
-|            			| :heavy_check_mark:    |                   |                 		|												    |	[SPI-_I2C\_DMA](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/SPI_or_I2C_DMA_accelerometer)  							                    					| SPI - I2C to interface with the LIS2DH acceleromete                                              |This example demonstrates how to use SPI or I2C to interface with the LIS2DH acceleromete                                                                                                                                                                                      			                                |
-|               		|                       |                   |                 		|                                                   |																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
-|           			|  :heavy_check_mark:   |                   |                 		|												    |	[wakeup_ext\_timer](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/wakeup_hibernation_ext_timer)   							|Eddystone beacon- TPL5010EVM - Wakeup                                                             |This example configures a DA14531 device to be used as an Eddystone beacon.                                                                                                                                                                                                    			                                |
-|               		|                       |                   |                 		|                                                   |																																																					|                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
-|            			|:heavy_check_mark:     |:heavy_check_mark: |  :heavy_check_mark:   |												    |		[wakeup-button](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/wakeup-button)                                    											|SW2-SW3 button -wakeup up                                                                         |This example shows how to wake up using two possible sources, button SW2 or button SW3.<br>it shows how  to detect the source, button SW2 or button SW3.                                                                                                                       			                                |
-|               		|                       |                   |                 		|                                                   |																																																				    |                                                                                                  |                                                                                                                                                                                                                                                                                                                                            |
-|           			|:heavy_check_mark:     |:heavy_check_mark: | 		                |												    |		[I2C-Master-Slave](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/I2C-Master-Slave)                              											|I2C - Master-slave                                                                                |This example describes how to perform I2C data buffer transmission/reception between two boards in asynchronous mode (non-blocking communication). The project is split in two parts: the Master Board and the Slave Board.                                                    			                                | 
-|           			|:heavy_check_mark:     |                   | 		                |												    |		[SPI-Master-Slave](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/SPI-Master-Slave)                              											|SPI - Master-slave                                                                                |This example describes how to perform SPI data buffer transmission/reception between two DA14531 devices via DMA. The project is split in two parts: the Master Board and the Slave Board.                                                    			                                | 
-|           			|:heavy_check_mark:     |                   | 		                |												    |		[External processor Renesas](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/interfaces/external-processor-renesas)                              						|EK-RA2E1-DA14531 RAM - External MCU                                                                                |The goal of this example is to show how to load a program into the RAM of the DA14531 via a Renesas microcontroller EK-RA2E1.                                                    			                                | 
-|           			|:heavy_check_mark:     |                   | 		                |												    |		[Weight Scale](https://github.com/dialog-semiconductor/BLE_SDK6_examples/tree/main/connectivity/ble_weight_scale_nau7802)                              						|Weight Scale                                                                                |The goal of this example is to show an implementation of a generic BLE profile by showing a weight scale implementation                                                    			                                | 
-
-
-
-
-## Example usage
-<br/>
-To run any of these SW examples, the user needs:
-
-- DA14531/DA14585/DA14586 hardware.
-- Keil µvision.
-- Dialog SDK 6.0.18 available
-- Python script
-
-<br/>
-Begin by cloning this repository locally and then link the SW example to the SDK. Below is the description on how to use the python script to link the SDK and the SW example, and to clean the SW example project environment (remove absolute paths).
-
-
-**Note**: _It is highly recommended the user creates files that are added in the *src* folder of the SW example. By default, the Python script does not process user files located outside the *src* folder. You are free to create any folder under the *src* user space. You need to make sure the new folder path under *src* is added in the Keil project as a relative path._
-
-
-<br/>
-
-### <ins> Linking the project environment and the Dialog 6.0.18 SDK </ins>
-
-<br/>
-
-**Note**: _Linking the SW example project environment and Dialog 6.0.18 SDK adds absolute file paths to files in your SW example project environment path containing information about your system’s folder structure._ 
-
-_If the repository is cloned inside the SDK's project folder then by default all the projects are linked to that SDK given that the folder structure looks like "..\6.0.18.1182\projects\BLE_SDK6_examples"._
-
-_The Python script also supports cleaning these absolute file paths.See “Cleaning the project environment”._
-
-<br/>
-
-Below are the steps to link all the SW example project environments to the 6.0.18 SDK. This script will also copy project folders into SDK location at projects_github.
-
-1. Python 3.6 or higher is required to run the small example environment generation script.
-Python can be downloaded from [Python.org](http://python.org).
-
-2. Navigate to the main page of the github SDK6 examples repository and download the SW example. You can do so by clicking on "Code" and selecting "Download Zip", or use the HTTPS or SSH to clone the repository to your local.
-
-3. Extract the zip file.
-
-5. To link all projects to the SDK run the script from the current location. To link a particular project copy the python script in that project's project_environment folder and run the script there.
-
-4. Open a terminal and run:
-
-    ```console
-    > python dlg_make_keil5_env_v2.py -sdkpath “<path to your sdk repository>”
-    ```
-
-    For instance to link all projects:
-    ```console
-    > ..\BLE_SDK6_examples> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.18”
-    ```
-	
-	For instance to link a single projects:
-    ```console
-    > ..\connectivity\active_scanner\project_environment> python dlg_make_keil5_env_v2.py -sdkpath “C:\dev\6.0.18”
-    ```
-
-5. The script should indicate successful execution, as shown below, 
-
-![](img/pythonscript_link.png)
-
-<br/>
-
-### <ins> Cleaning the project environment </ins>
-
-<br/>
-
-Linking the project adds absolute paths to the project files, pointing them to the 6.0.18 SDK and adding projects in SDK location under folder projects_github. The clean functionality removes these absolute paths.
-Since absolute paths contain intermediate directory names, the clean command makes sure these intermediate directories are not shared with internal and external application users.
-
-Example: After linking, `C:\Users\Your_name\Upcoming_project\Keil_5` reveals the user’s name and the name of the project the user is working on.
-Below are the steps to clean the SW example project environment.
-
-<br/>
-
-1. Python 3.6 or higher is required to run the small example environment generation script.
-Python can be downloaded from [Python.org](http://python.org).
-
-2. Navigate to the main page of the github SDK6 examples repository and download the SW example. You can do so by clicking on "Code" and selecting "Download Zip", or use the HTTPS or SSH to clone the repository to your local.
-
-3. Extract the zip file.
-
-4. Open a terminal and run:
-
-    ```console
-    > python dlg_make_keil5_env_v2.py -sdkpath “clean”
-    ```
-
-5. The script should indicate successful execution, as shown below,
-
-![](img/pythonscript_clean.png)
-
-<br/>
-<br/>
-
-## Example compatibility
-
-Not all the examples will run on the latest version of the SDK6, the tested version is indicated in the Readme. If you find and example that needs porting to the latest version please report it in the issues.
+### System setup
+- Install components above
+- Install (recommended) `C/C++ Extension Pack` and `CMake tools` VSCode extensions
+- Go to the `projects` folder of SDK 6 - for example: (*Your_install_location/DA145xx_SDK/6.0.18.1182.1/projects*)
+- Open terminal in `projects` folder and clone [VSCode_BLE_SDK6_examples
+](https://github.com/vvveasel/VSCode_BLE_SDK6_examples) repo
+- Clone [build_utils](https://github.com/vvveasel/build_utils) repo
+- Your `projects` folder should include 4 subfolders: `host_apps`, `target_apps`, `build_utils` and `VSCode_BLE_SDK6_examples`.
+### VSCode project edits
+- Launch VSCode and open [iBeacon](./connectivity/ibeacon/) folder on local machine.
+- Open [CMakeLists.txt](./connectivity/ibeacon/CMakeLists.txt).
+- Edit lines below to match your installation paths:
+`set(DIALOG_SDK_PATH "$ENV{HOME}/Projects/sdk/DA145xx_SDK/6.0.18.1182.1")`
+`set(GCC_TOOLCHAIN_PATH "/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi")`.
+- Open `.vscode` folder and edit the following lines in `launch.json` file to match your installation and platform:
+`            "osx": {`
+`               "miDebuggerPath": "/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/arm-none-eabi-gdb",`
+`                "debugServerPath": "/Applications/SEGGER/JLink_V794b/JLinkGDBServerCLExe",`
+- Click on `CMake extension` and `Scan for kits` in the `Configure` option.
+- VSCode should find your `GCC 13.x arm-eabi-none` kit. If not, go to settings, search for `Additional Kits` and provide search path to your cross compiler.
+- Delete `build` folder if it is present.
+- Go to `CMake extension` and click `configure`.
+- If configuration was successful, you should see these lines in the output:
+`[cmake] -- Configuring done`
+`[cmake] -- Generating done`
+- Click `build`. If successful, you should find these lines in the output:
+`[build] [100%] Built target DA14531_531`
+`[driver] Build completed: 00:00:04.363`
+`[build] Build finished with exit code 0`
+### Build notes
+- Only DA14531 configuration was set and tested
+- Only USB DA14531 kit used for testing
+### Testing iBeacon
+- Plug your hardware
+- Click on the debugger symbol or via F5
+- Let program run after it stops on load
+- Launch `NRF Connect`(recommended) app on the Android phone
+- Find your beacon and check UUID
+### Test Central project (or any other)
+- Copy modified `CMakeLists.txt` and `.vscode` folder to [Central](./connectivity/central/) project. Override exising files.
+- Configure and build
+- Run firmware and open serial terminal at 230400 baud.
+- Check central devices discovery output.
+### Test BLE Barebone project from Renesas SDK6
+- Copy modified `CMakeLists.txt` and `.vscode` folder to [ble_app_barebone](../target_apps/ble_examples/ble_app_barebone/) project. Override exising files.
+- Configure and build
+- Launch `NRF Connect` app and find `DLG-BRBN` device. Connect.
+### Debug
+- I have only briefly tested built-in gdb-segger combo but it seems to be running fine. Start-pause program, setting, hitting breakpoints...
+---
+### Disclaimer
+This setup is experimental and only brief testing has been done so far. There is no guarantee it will work out-of-the box for more complex projects. The author provides no warranty or support. Use at your own discretion. MIT license. 
